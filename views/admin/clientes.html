@@ -1,0 +1,133 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1> Lista de Clientes</h1>
+        </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+            <li class="breadcrumb-item"><a href="/admin/clientes">Clientes</a></li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+    <!-- <h1>
+      Lista de Clientes
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active"><a href="/admin/clientes">Cursos</a></li>
+    </ol> -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="callout callout-info">
+          <h5><i class="fas fa-info"></i>  Observação:</h5>
+          Esta página foi aprimorada para múltiplos-uploads de arquivos. Clique no botão de certificados para realizar o procedimento.
+        </div>
+
+        
+        <div class="box box-primary">
+
+          
+          <div class="box-header">
+            <a href="/admin/clientes/create" class="btn btn-success">Cadastrar Clientes</a>
+          </div>
+          <hr>
+          <div class="box-body no-padding">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <!--<th style="width: 10px">#</th>-->
+                  <th>Nome do Cliente</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th style="width: 420px">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loop="$clientes"}
+                <tr>
+                  <!--<td>{$value.idclient}</td>-->
+                  <td>{$value.nome}</td>
+                  <td>{$value.email}</td>
+                  <td>{$value.phone}</td>
+                  <td>
+                    <a href="#" data-toggle="modal" data-target="#modalAnexarCertificado"
+                      data-idcliente="{$value.idclient}" data-nomecliente="{$value.nome}"
+                      class="btn btn-default btn-xs btnAnexarCert"><i class="fa fa-edit"></i>Certificados</a>
+                    
+                    <a href="/admin/list/{$value.idclient}" class="btn btn-primary btn-xs"><i
+                        class="fa fa-edit"></i> Visualizar Documentos</a>
+
+                    <a href="/admin/clientes/{$value.idclient}" class="btn btn-primary btn-xs"><i
+                        class="fa fa-edit"></i> Editar</a>
+
+                    <a href="/admin/clientes/{$value.idclient}/delete"
+                      onclick="return confirm('Deseja realmente excluir este registro?')"
+                      class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Excluir</a>
+                  </td>
+                </tr>
+                {/loop}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalAnexarCertificado" tabindex="-1" role="dialog"
+      aria-labelledby="modalLabelAnexarCert">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalLabelAnexarCert">Anexar Arquivos</h4>
+          </div>
+
+          <div class="modal-body">
+            
+            <form id="formAnexar" role="form" action="/admin/certificados/create" method="post"
+              enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">Cliente:</label>
+                <input type="text" class="form-control" id="nomecliente" name="nomecliente" readonly>
+                <input type="hidden" id="idcliente" name="idclient">
+              </div>
+
+              <div class="form-group">
+                <label for="file">Certificado</label> 
+                <input type="file" class="form-control file" id="file" name="file[]" multiple> 
+                <div class="box box-widget">
+                  <h4></h4>
+                </div>
+              </div>
+              
+            </form>
+          </div>
+        
+          
+          <div class="modal-footer">
+            <button id="closeModalAnexo" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" name="upload" class="btn btn-success" form="formAnexar">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

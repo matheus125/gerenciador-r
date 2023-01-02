@@ -1,0 +1,21 @@
+{
+    "name": "hcodebr/ecommerce",
+    "authors": [
+        {
+            "name": "ms-solucoes em tecnologia",
+            "email": "mmota350@gmail.com"
+        }
+    ],
+    "require": {
+    	"phpmailer/phpmailer":"5.2.22",
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0",
+        "mpdf/qrcode":"1.1.1",
+        "mercadopago/dx-php": "2.4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hcode\\": "vendor\\api\\php-classes\\src"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tp-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <title>Login</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/login_bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <form id="login_form" name="login-form" method="post" action="home.php" class="form-signin">
+        <img class="mb-4" src="images/fundo.jpeg" alt="" width="250" height="200">
+        <label for="inputEmail" class="sr-only">Nome do usuário</label>
+        <input type="text" id="inputUsuario" class="form-control" placeholder="Nome do usuário" required autofocus>
+        <br>
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <div class="checkbox mb-3">
+            <label>
+        <input type="checkbox" value="remember-me"> Lembre de mim
+      </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+    </form>
+</body>
+
+</html>

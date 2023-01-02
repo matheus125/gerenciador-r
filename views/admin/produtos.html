@@ -1,0 +1,80 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1> Lista de Produtos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+            <li class="breadcrumb-item active"><a href="/admin/produtos"></a>Produtos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+
+          <div class="box-header">
+            <a href="/admin/produtos/create" class="btn btn-success">Cadastrar Produtos</a>
+          </div>
+
+          <div class="box-body no-padding">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <!--<th style="width: 10px">#</th>-->
+                  <th>Cor</th>
+                  <th>Categoria</th>
+                  <th>marca</th>
+                  <th>Tamanho</th>
+                  <th>Descrição</th>
+                  <th>Codigo Barra</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th style="width: 200px">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loop="$produtos"}
+                <tr>
+
+                  <td>{$value.color}</td>
+                  <td>{$value.category_name}</td>
+                  <td>{$value.brand}</td>
+                  <td>{$value.size}</td>
+                  <td>{$value.description}</td>
+                  <td>{$value.bar_code}</td>
+                  <td>R${function="formatPrice($value.price)"}</td>
+                  <td>{$value.qtdproduct}</td>
+                  <td>
+                    <a href="/admin/produtos/{$value.id_product}" class="btn btn-primary btn-xs"><i
+                        class="fa fa-edit"></i> Editar</a>
+                    <a href="/admin/produtos/{$value.id_product}/delete"
+                      onclick="return confirm('Deseja realmente excluir este registro?')"
+                      class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                  </td>
+                </tr>
+                {/loop}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
