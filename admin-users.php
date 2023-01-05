@@ -27,7 +27,7 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
 
     if (!isset($_POST['despassword']) || $_POST['despassword'] === '') {
 
-        User::setError("Preencha a nova senha.");
+        User::setErrorRegister("Preencha a nova senha.");
         header("Location: /admin/users/$id_employees/password");
         exit;
 
@@ -35,7 +35,7 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
 
     if (!isset($_POST['despassword-confirm']) || $_POST['despassword-confirm'] === '') {
 
-        User::setError("Preencha a confirmação da nova senha.");
+        User::setErrorRegister("Preencha a confirmação da nova senha.");
         header("Location: /admin/users/$id_employees/password");
         exit;
 
@@ -43,7 +43,7 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
 
     if ($_POST['despassword'] !== $_POST['despassword-confirm']) {
 
-        User::setError("Confirme corretamente as senhas.");
+        User::setErrorRegister("Confirme corretamente as senhas.");
         header("Location: /admin/users/$id_employees/password");
         exit;
 
@@ -87,7 +87,7 @@ $app->get("/admin/users/create", function () {
     $page->setTpl("users-create", [
         'user' => $user->getValues(),
         'profileMsg' => User::getSuccess(),
-        'profileError' => User::getError(),
+        'errorRegister' => User::getErrorRegister(),
     ]);
 
 });
@@ -128,25 +128,25 @@ $app->post("/admin/users/create", function () {
     User::verifyLogin();
 
     if (!isset($_POST['employees_name']) || $_POST['employees_name'] === '') {
-        User::setError("Preencha o seu nome.");
+        User::setErrorRegister("Preencha o seu nome.");
         header('Location: /admin/users/create');
         exit;
     }
 
     if (!isset($_POST['employees_function']) || $_POST['employees_function'] === '') {
-        User::setError("Preencha o seu cargo.");
+        User::setErrorRegister("Preencha o seu cargo.");
         header('Location: /admin/users/create');
         exit;
     }
 
     if (!isset($_POST['deslogin']) || $_POST['deslogin'] === '') {
-        User::setError("Preencha o seu login.");
+        User::setErrorRegister("Preencha o seu login.");
         header('Location: /admin/users/create');
         exit;
     }
 
     if (!isset($_POST['despassword']) || $_POST['despassword'] === '') {
-        User::setError("Preencha a sua senha.");
+        User::setErrorRegister("Preencha a sua senha.");
         header('Location: /admin/users/create');
         exit;
     }
@@ -157,7 +157,7 @@ $app->post("/admin/users/create", function () {
 
         if (User::checkLoginExist($_POST['deslogin']) === true) {
 
-            User::setError("Este login já está cadastrado, informe outro login.");
+            User::setErrorRegister("Este login já está cadastrado, informe outro login.");
             header('Location: /admin/users/create');
             exit;
 

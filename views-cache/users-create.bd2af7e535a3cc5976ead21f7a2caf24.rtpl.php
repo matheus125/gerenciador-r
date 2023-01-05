@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -18,16 +18,16 @@
   </section>
 
   <div class="card card-success">
-    {if="$profileMsg != ''"}
+    <?php if( $profileMsg != '' ){ ?>
     <div class="alert alert-success">
-      {$profileMsg}
+      <?php echo htmlspecialchars( $profileMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
     </div>
-    {/if}
-    {if="$errorRegister != ''"}
+    <?php } ?>
+    <?php if( $errorRegister != '' ){ ?>
     <div class="alert alert-danger">
-      {$errorRegister}
+      <?php echo htmlspecialchars( $errorRegister, ENT_COMPAT, 'UTF-8', FALSE ); ?>
     </div>
-    {/if}
+    <?php } ?>
 
     
 
