@@ -1,5 +1,0 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="list-group" id="menu">
-    <a href="/admin/profile" class="list-group-item list-group-item-action">Editar Dados</a>
-    <a href="/admin/password" class="list-group-item list-group-item-action">Alterar Senha</a>
-    <a href="/admin" class="list-group-item list-group-item-action">Voltar</a>
-</div>

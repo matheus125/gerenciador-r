@@ -183,13 +183,13 @@ class User extends Model
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_update_employees(:id_employees, :employees_name, :employees_function, :id_profile, :deslogin, :despassword, :inadmin)", array(
+		$results = $sql->select("CALL sp_update_employees(:id_employees, :employees_name, 
+		:employees_function, :id_profile, :deslogin, :inadmin)", array(
 			":id_employees" => $this->getid_employees(),
 			":employees_name" => utf8_decode($this->getemployees_name()),
 			":employees_function" => $this->getemployees_function(),
 			":id_profile" => $this->getid_profile(),
 			":deslogin" => $this->getdeslogin(),
-			":despassword" => User::getPasswordHash($this->getdespassword()),
 			":inadmin" => $this->getinadmin()
 		));
 
