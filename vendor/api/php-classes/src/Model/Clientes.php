@@ -19,7 +19,7 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_persons p INNER JOIN tb_client c ON c.idperson = p.idperson");
+		return $sql->select("SELECT * FROM tb_client ORDER BY company_name");
 	}
 
 	public static function listCertifi($idclient)
@@ -53,20 +53,20 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_client_save(:nome, :email, :phone, :idperfil, :deslogin, :despassword)", array(
-			":nome" => utf8_decode($this->getnome()),
-			":email" => $this->getemail(),
-			":phone" => $this->getphone(),
+		$results = $sql->select("CALL sp_client_save(:idperfil, :company_name, :cnpj, :phone, :email, :deslogin, :despassword)", array(
 			":idperfil" => Perfil::Cliente,
-			":deslogin" => $this->getlogin(),
+			":company_name" => utf8_decode($this->getcompany_name()),
+			":cnpj" => $this->getcnpj(),
+			":phone" => $this->getphone(),
+			":email" => $this->getemail(),
+			":deslogin" => $this->getdeslogin(),
 			":despassword" => User::getPasswordHash($this->getpassword())
 		));
 
-		// die(var_dump($this->getnome(), $this->getemail(), $this->getphone(), Perfil::Cliente,
+		// die(var_dump($this->getcompany_name(), $this->getemail(), $this->getphone(), Perfil::Cliente,
         // $this->getlogin(), $this->getpassword()));
 
-
-		$this->setData($results[0]);
+		//  $this->setData($results[0]);
 
 		//Clientes::updateFile();
 	}
@@ -76,10 +76,8 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_client c 
-			INNER JOIN tb_persons p ON c.idperson = p.idperson
-			INNER JOIN tb_users u ON u.idperson = p.idperson
-			WHERE c.idclient = :idclient", [
+		$results = $sql->select("SELECT * FROM tb_client
+			WHERE idclient = :idclient", [
 			':idclient' => $idclient
 		]);
 
@@ -91,7 +89,7 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		$sql->query("CALL sp_cliente_delete(:idclient)", array(
+		$sql->query("CALL sp_delete_client(:idclient)", array(
 			":idclient" => $this->getidclient()
 		));
 
@@ -126,9 +124,9 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_client_update(:idperson, :nome, :email, :phone, :idperfil, :deslogin, :despassword)", array(
+		$results = $sql->select("CALL sp_client_update(:idperson, :company_name, :email, :phone, :idperfil, :deslogin, :despassword)", array(
 			":idperson"=> $this->getidperson(),
-			":nome" => $this->getnome(),
+			":company_name" => $this->getcompany_name(),
 			":email" => $this->getemail(),
 			":phone" => $this->getphone(),
 			":idperfil" => $this->getidperfil(),
