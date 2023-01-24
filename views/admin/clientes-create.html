@@ -30,7 +30,7 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          
+
           <form role="form" action="/admin/clientes/create" method="post">
             <div class="box-body">
               <div class="form-group">
@@ -39,17 +39,18 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-users"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do cliente">
+                  <input type="text" class="form-control" id="company_name" name="company_name"
+                    placeholder="Digite o nome do cliente">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="cnpj">CNPJ</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                   </div>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
+                  <input type="texte" class="form-control" id="cnpj" name="cnpj" placeholder="Informe o cnpj">
                 </div>
               </div>
 
@@ -65,12 +66,22 @@
               </div>
 
               <div class="form-group">
+                <label for="email">E-mail</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label for="login">Login</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-universal-access"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="login" name="login" placeholder="Digite o login">
+                  <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login">
                 </div>
               </div>
 
@@ -80,7 +91,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <input type="password" class="form-control" id="password" name="password"
+                  <input type="password" class="form-control" id="despassword" name="despassword"
                     placeholder="Digite a senha">
                 </div>
               </div>

@@ -20,25 +20,24 @@
           <!-- form start -->
           <form role="form" action="/admin/clientes/{$clientes.idclient}" method="post" enctype="multipart/form-data">
             <div class="box-body">
-              <div class="form-group">
-                <label for="nome">Nome do curso</label>
+               <div class="form-group">
+                <label for="nome">Nome do Cliente</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    <span class="input-group-text"><i class="fas fa-users"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do cliente"
-                    value="{$clientes.nome}">
+                  <input type="text" class="form-control" id="company_name" name="company_name"
+                    placeholder="Digite o nome do cliente" value="{$clientes.company_name}">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="cnpj">CNPJ</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                   </div>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail"
-                    value="{$clientes.email}">
+                  <input type="texte" class="form-control" id="cnpj" name="cnpj" placeholder="Informe o cnpj" value="{$clientes.cnpj}">
                 </div>
               </div>
 
@@ -48,8 +47,28 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Digite o telefone"
-                    value="{$clientes.phone}">
+                  <input type="tel" class="form-control" data-inputmask='"mask": "(99) 99999-9999"' data-mask id="phone"
+                    name="phone" placeholder="Digite o telefone" value="{$clientes.phone}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail" value="{$clientes.email}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="login">Login</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-universal-access"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login" value="{$clientes.deslogin}">
                 </div>
               </div>
 

@@ -49,32 +49,29 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <!--<th style="width: 10px">#</th>-->
-                  <th>Nome do Cliente</th>
-                  <th>cpf</th>
-                  <th>Telefone</th>
-                  <th style="width: 420px">&nbsp;</th>
+                  <th style="width: 10px">ID</th>
+                  <th>EMPRESA</th>
+                  <th style="width: 100px">CNPJ</th>
+                  <th>TELEFONE</th>
+                  <th>EMAIL</th>
+                  <th>LOGIN</th>
+                  <th style="width: 100px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
                 {loop="$clientes"}
                 <tr>
-                  <!--<td>{$value.id}</td>-->
-                  <td>{$value.name}</td>
-                  <td>{$value.cpf}</td>
+                  <td>{$value.idclient}</td>
+                  <td>{$value.company_name}</td>
+                  <td>{$value.cnpj}</td>
                   <td>{$value.phone}</td>
+                  <td>{$value.email}</td>
+                  <td>{$value.deslogin}</td>
                   <td>
-                    <a href="#" data-toggle="modal" data-target="#modalAnexarCertificado"
-                      data-ide="{$value.id}" data-nomecliente="{$value.name}"
-                      class="btn btn-default btn-xs btnAnexarCert"><i class="fa fa-edit"></i>Certificados</a>
-                    
-                    <a href="/admin/list/{$value.id}" class="btn btn-primary btn-xs"><i
-                        class="fa fa-edit"></i> Visualizar Documentos</a>
-
-                    <a href="/admin/clientes/{$value.id}" class="btn btn-primary btn-xs"><i
+                    <a href="/admin/clientes/{$value.idclient}" class="btn btn-primary btn-xs"><i
                         class="fa fa-edit"></i> Editar</a>
 
-                    <a href="/admin/clientes/{$value.id}/delete"
+                    <a href="/admin/clientes/{$value.idclient}/delete"
                       onclick="return confirm('Deseja realmente excluir este registro?')"
                       class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Excluir</a>
                   </td>

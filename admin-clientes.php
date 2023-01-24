@@ -2,13 +2,13 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
-use \Hcode\Model\Cliente;
+use \Hcode\Model\Clientes;
 
 $app->get("/admin/clientes", function(){
 
 	User::verifyLogin();
 
-	$clientes = Cliente::listAll();
+	$clientes = Clientes::listAll();
 	
 	$page = new PageAdmin();
 
@@ -32,7 +32,7 @@ $app->post("/admin/clientes/create", function(){
 
 	User::verifyLogin();
 
-	$clientes = new Cliente();
+	$clientes = new Clientes();
 
 	$clientes->setData($_POST);
 
@@ -43,13 +43,13 @@ $app->post("/admin/clientes/create", function(){
 
 });
 
-$app->get("/admin/clientes/:id", function($id){
+$app->get("/admin/clientes/:idclient", function($idclient){
 	
 	User::verifyLogin();
 
-	$clientes = new Cliente();
+	$clientes = new Clientes();
 
-	$clientes->get((int)$id);
+	$clientes->get((int)$idclient);
 
 	$page = new PageAdmin();
 
@@ -59,13 +59,13 @@ $app->get("/admin/clientes/:id", function($id){
 
 });
 
-$app->post("/admin/clientes/:id", function($id){
+$app->post("/admin/clientes/:idclient", function($idclient){
 	
 	User::verifyLogin();
 
-	$clientes = new Cliente();
+	$clientes = new Clientes();
 
-	$clientes->get((int)$id);
+	$clientes->get((int)$idclient);
 	
 	$clientes->setData($_POST);
 	
@@ -77,13 +77,13 @@ $app->post("/admin/clientes/:id", function($id){
 });
 
 
-$app->get("/admin/clientes/:id/delete", function($id){
+$app->get("/admin/clientes/:idclient/delete", function($idclient){
 	
 	User::verifyLogin();
 
-	$clientes = new Cliente();
+	$clientes = new Clientes();
 
-	$clientes->get((int)$id);
+	$clientes->get((int)$idclient);
 
 	$clientes->delete();
 
