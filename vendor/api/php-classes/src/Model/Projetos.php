@@ -5,7 +5,7 @@ namespace Hcode\Model;
 use \Hcode\DB\Sql;
 use \Hcode\Model;
 
-class Produtos extends Model
+class Projetos extends Model
 {
 
 	public static function listAll()

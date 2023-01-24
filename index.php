@@ -11,6 +11,6 @@ $app->config('debug', true);
 require_once "functions.php";
 require_once "admin.php";
 require_once "admin-users.php";
-require_once "admin-produtos.php";
+require_once "admin-projetos.php";
 require_once "admin-clientes.php";
 $app->run();
