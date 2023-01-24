@@ -1,16 +1,16 @@
 <?php 
 
-use \Hcode\PageAdmin;
+use \Hcode\PageAdminClientes;
 use \Hcode\Model\User;
 use \Hcode\Model\Clientes;
 
-$app->get("/admin/clientes", function(){
+$app->get("/admin/Clientes/clientes", function(){
 
 	User::verifyLogin();
 
 	$clientes = Clientes::listAll();
 	
-	$page = new PageAdmin();
+	$page = new PageAdminClientes();
 
 	$page->setTpl("clientes", [
 		'clientes'=>$clientes
@@ -18,17 +18,17 @@ $app->get("/admin/clientes", function(){
 
 });
 
-$app->get("/admin/clientes/create", function(){
+$app->get("/admin/Clientes/clientes/create", function(){
 
 	User::verifyLogin();
 
-	$page = new PageAdmin();
+	$page = new PageAdminClientes();
 
 	$page->setTpl("clientes-create");
 
 });
 
-$app->post("/admin/clientes/create", function(){
+$app->post("/admin/Clientes/clientes/create", function(){
 
 	User::verifyLogin();
 
@@ -38,12 +38,12 @@ $app->post("/admin/clientes/create", function(){
 
 	$clientes->save();
 
-	header('Location: /admin/clientes');
+	header('Location: /admin/Clientes/clientes');
 	exit;
 
 });
 
-$app->get("/admin/clientes/:idclient", function($idclient){
+$app->get("/admin/Clientes/clientes/:idclient", function($idclient){
 	
 	User::verifyLogin();
 
@@ -51,7 +51,7 @@ $app->get("/admin/clientes/:idclient", function($idclient){
 
 	$clientes->get((int)$idclient);
 
-	$page = new PageAdmin();
+	$page = new PageAdminClientes();
 
 	$page->setTpl("clientes-update",[
 	'clientes'=>$clientes->getValues()
@@ -59,7 +59,7 @@ $app->get("/admin/clientes/:idclient", function($idclient){
 
 });
 
-$app->post("/admin/clientes/:idclient", function($idclient){
+$app->post("/admin/Clientes/clientes/:idclient", function($idclient){
 	
 	User::verifyLogin();
 
@@ -71,13 +71,13 @@ $app->post("/admin/clientes/:idclient", function($idclient){
 	
 	$clientes->update();
 	
-	header("Location: /admin/clientes");
+	header("Location: /admin/Clientes/clientes");
 	exit;	
 
 });
 
 
-$app->get("/admin/clientes/:idclient/delete", function($idclient){
+$app->get("/admin/Clientes/clientes/:idclient/delete", function($idclient){
 	
 	User::verifyLogin();
 
@@ -87,7 +87,7 @@ $app->get("/admin/clientes/:idclient/delete", function($idclient){
 
 	$clientes->delete();
 
-	header("Location: /admin/clientes");
+	header("Location: /admin/Clientes/clientes");
 	exit;
 
 });
