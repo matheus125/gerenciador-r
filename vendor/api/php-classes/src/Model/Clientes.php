@@ -124,17 +124,16 @@ class Clientes extends Model
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_client_update(:idperson, :company_name, :email, :phone, :idperfil, :deslogin, :despassword)", array(
-			":idperson"=> $this->getidperson(),
-			":company_name" => $this->getcompany_name(),
-			":email" => $this->getemail(),
-			":phone" => $this->getphone(),
-			":idperfil" => $this->getidperfil(),
-			":deslogin" => $this->getdeslogin(),
-			":despassword" => $this->getdespassword()
+			$results = $sql->select("CALL sp_update_client(:idclient, :company_name, :cnpj, :phone, :email, :deslogin)", array(
+				":idclient" => $this->getidclient(),
+				":company_name" => utf8_decode($this->getcompany_name()),
+				":cnpj" => $this->getcnpj(),
+				":phone" => $this->getphone(),
+				":email" => $this->getemail(),
+				":deslogin" => $this->getdeslogin()
 		));
 
-		$this->setData($results[0]);		
+		// $this->setData($results[0]);		
 
 	}
 
