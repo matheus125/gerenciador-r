@@ -35,19 +35,18 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th style="width: 10px">ID</th>
-                  <th>EMPRESA</th>
-                  <th style="width: 100px">CNPJ</th>
+                  <!-- <th style="width: 10px">ID</th> -->
+                  <th>Empresa</th>
+                  <th>CNPJ</th>
                   <th>TELEFONE</th>
                   <th>EMAIL</th>
                   <th>LOGIN</th>
-                  <th style="width: 100px">&nbsp;</th>
+                  <th style="width: 50">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
                 {loop="$clientes"}
                 <tr>
-                  <td>{$value.idclient}</td>
                   <td>{$value.company_name}</td>
                   <td>{$value.cnpj}</td>
                   <td>{$value.phone}</td>

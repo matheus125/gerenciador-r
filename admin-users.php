@@ -1,9 +1,9 @@
 <?php
 
 use \Hcode\Model\User;
-use \Hcode\PageAdmin;
+use \Hcode\PageAdminUsuarios;
 
-$app->get("/admin/users/:id_employees/password", function ($id_employees) {
+$app->get("/admin/Usuarios/users/:id_employees/password", function ($id_employees) {
 
     User::verifyLogin();
 
@@ -11,7 +11,7 @@ $app->get("/admin/users/:id_employees/password", function ($id_employees) {
 
     $user->get((int) $id_employees);
 
-    $page = new PageAdmin();
+    $page = new PageAdminUsuarios();
 
     $page->setTpl("users-password", [
         "user" => $user->getValues(),
@@ -21,14 +21,14 @@ $app->get("/admin/users/:id_employees/password", function ($id_employees) {
 
 });
 
-$app->post("/admin/users/:id_employees/password", function ($id_employees) {
+$app->post("/admin/Usuarios/users/:id_employees/password", function ($id_employees) {
 
     User::verifyLogin();
 
     if (!isset($_POST['despassword']) || $_POST['despassword'] === '') {
 
         User::setErrorRegister("Preencha a nova senha.");
-        header("Location: /admin/users/$id_employees/password");
+        header("Location: /admin/Usuarios/users/$id_employees/password");
         exit;
 
     }
@@ -36,7 +36,7 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
     if (!isset($_POST['despassword-confirm']) || $_POST['despassword-confirm'] === '') {
 
         User::setErrorRegister("Preencha a confirmação da nova senha.");
-        header("Location: /admin/users/$id_employees/password");
+        header("Location: /admin/Usuarios/users/$id_employees/password");
         exit;
 
     }
@@ -44,7 +44,7 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
     if ($_POST['despassword'] !== $_POST['despassword-confirm']) {
 
         User::setErrorRegister("Confirme corretamente as senhas.");
-        header("Location: /admin/users/$id_employees/password");
+        header("Location: /admin/Usuarios/users/$id_employees/password");
         exit;
 
     }
@@ -57,18 +57,18 @@ $app->post("/admin/users/:id_employees/password", function ($id_employees) {
 
     User::setSuccess("Senha alterada com sucesso.");
 
-    header("Location: /admin/users/$id_employees/password");
+    header("Location: /admin/Usuarios/users/$id_employees/password");
     exit;
 
 });
 
-$app->get("/admin/users", function () {
+$app->get("/admin/Usuarios/users", function () {
 
     User::verifyLogin();
 
     $users = User::listAll();
 
-    $page = new PageAdmin();
+    $page = new PageAdminUsuarios();
 
     $page->setTpl("users", array(
         "users" => $users,
@@ -76,13 +76,13 @@ $app->get("/admin/users", function () {
 
 });
 
-$app->get("/admin/users/create", function () {
+$app->get("/admin/Usuarios/users/create", function () {
 
     User::verifyLogin();
 
     $user = User::getFromSession();
 
-    $page = new PageAdmin();
+    $page = new PageAdminUsuarios();
 
     $page->setTpl("users-create", [
         'user' => $user->getValues(),
@@ -92,7 +92,7 @@ $app->get("/admin/users/create", function () {
 
 });
 
-$app->get("/admin/users/:id_employees/delete", function ($id_employees) {
+$app->get("/admin/Usuarios/users/:id_employees/delete", function ($id_employees) {
 
     User::verifyLogin();
 
@@ -102,12 +102,12 @@ $app->get("/admin/users/:id_employees/delete", function ($id_employees) {
 
     $user->delete();
 
-    header("Location: /admin/users");
+    header("Location: /admin/Usuarios/users");
     exit;
 
 });
 
-$app->get("/admin/users/:id_employees", function ($id_employees) {
+$app->get("/admin/Usuarios/users/:id_employees", function ($id_employees) {
 
     User::verifyLogin();
 
@@ -115,7 +115,7 @@ $app->get("/admin/users/:id_employees", function ($id_employees) {
 
     $user->get((int) $id_employees);
 
-    $page = new PageAdmin();
+    $page = new PageAdminUsuarios();
 
     $page->setTpl("users-update", array(
         "user" => $user->getValues(),
@@ -123,31 +123,31 @@ $app->get("/admin/users/:id_employees", function ($id_employees) {
 
 });
 
-$app->post("/admin/users/create", function () {
+$app->post("/admin/Usuarios/users/create", function () {
 
     User::verifyLogin();
 
     if (!isset($_POST['employees_name']) || $_POST['employees_name'] === '') {
         User::setErrorRegister("Preencha o seu nome.");
-        header('Location: /admin/users/create');
+        header('Location: /admin/Usuarios/users/create');
         exit;
     }
 
     if (!isset($_POST['employees_function']) || $_POST['employees_function'] === '') {
         User::setErrorRegister("Preencha o seu cargo.");
-        header('Location: /admin/users/create');
+        header('Location: /admin/Usuarios/users/create');
         exit;
     }
 
     if (!isset($_POST['deslogin']) || $_POST['deslogin'] === '') {
         User::setErrorRegister("Preencha o seu login.");
-        header('Location: /admin/users/create');
+        header('Location: /admin/Usuarios/users/create');
         exit;
     }
 
     if (!isset($_POST['despassword']) || $_POST['despassword'] === '') {
         User::setErrorRegister("Preencha a sua senha.");
-        header('Location: /admin/users/create');
+        header('Location: /admin/Usuarios/users/create');
         exit;
     }
 
@@ -158,7 +158,7 @@ $app->post("/admin/users/create", function () {
         if (User::checkLoginExist($_POST['deslogin']) === true) {
 
             User::setErrorRegister("Este login já está cadastrado, informe outro login.");
-            header('Location: /admin/users/create');
+            header('Location: /admin/Usuarios/users/create');
             exit;
 
         }
@@ -174,13 +174,13 @@ $app->post("/admin/users/create", function () {
 
     $user->save();
 
-    header("Location: /admin/users");
+    header("Location: /admin/Usuarios/users");
 
     exit;
 
 });
 
-$app->post("/admin/users/:id_employees", function ($id_employees) {
+$app->post("/admin/Usuarios/users/:id_employees", function ($id_employees) {
 
     User::verifyLogin();
 
@@ -194,7 +194,7 @@ $app->post("/admin/users/:id_employees", function ($id_employees) {
 
     $user->update();
 
-    header("Location: /admin/users");
+    header("Location: /admin/Usuarios/users");
     exit;
 
 });
