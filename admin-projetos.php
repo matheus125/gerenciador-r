@@ -18,17 +18,17 @@ $app->get("/admin/Projetos/projetos", function(){
 
 });
 
-$app->get("/admin/Projetos/projetos-create", function(){
+$app->get("/admin/Projetos/projeto/create", function(){
 
 	User::verifyLogin();
 
-	$page = new PageAdmin();
+	$page = new PageAdminProjetos();
 
-	$page->setTpl("projetos-create");
+	$page->setTpl("projeto-create");
 
 });
 
-$app->post("/admin/produtos/create", function(){
+$app->post("/admin/Projetos/projeto/create", function(){
 
 	User::verifyLogin();
 
@@ -38,7 +38,7 @@ $app->post("/admin/produtos/create", function(){
 
 	$produtos->save();
 
-	header('Location: /admin/produtos');
+	header('Location: /admin/Projetos/projeto-create');
 	exit;
 
 });
@@ -51,7 +51,7 @@ $app->get("/admin/produtos/:id_product", function($id_product){
 
 	$produtos->get((int)$id_product);
 
-	$page = new PageAdmin();
+	$page = new PageAdminProjetos();
 
 	$page->setTpl("produtos-update",[
 	'produtos'=>$produtos->getValues()
@@ -81,7 +81,7 @@ $app->get("/admin/produtos/:id_product/delete", function($id_product){
 	
 	User::verifyLogin();
 
-	$produtos = new Produtos();
+	$produtos = new PageAdminProjetos();
 
 	$produtos->get((int)$id_product);
 
