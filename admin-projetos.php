@@ -45,35 +45,35 @@ $app->post("/admin/Projetos/projeto/create", function(){
 
 });
 
-$app->get("/admin/projetos/:id_product", function($id_product){
+$app->get("/admin/Projetos/projetos/:id_projeto", function($id_projeto){
 	
 	User::verifyLogin();
 
 	$projetos = new Projetos();
 
-	$projetos->get((int)$id_product);
+	$projetos->get((int)$id_projeto);
 
 	$page = new PageAdminProjetos();
 
-	$page->setTpl("projetos-update",[
+	$page->setTpl("projeto-update",[
 	'projetos'=>$projetos->getValues()
 	]);
 
 });
 
-$app->post("/admin/produtos/:id_product", function($id_product){
+$app->post("/admin/produtos/:id_projeto", function($id_projeto){
 	
 	User::verifyLogin();
 
 	$produtos = new Produtos();
 
-	$produtos->get((int)$id_product);
+	$produtos->get((int)$id_projeto);
 	
 	$produtos->setData($_POST);
 	
 	$produtos->update();
 	
-	header("Location: /admin/produtos");
+	header("Location: /admin/Projetos/produtos");
 	exit;	
 
 });

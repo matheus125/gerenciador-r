@@ -141,6 +141,19 @@ class User extends Model
         return $sql->select("SELECT * FROM tb_user a INNER JOIN tb_employees b USING(id_employees) ORDER BY b.employees_name");
     }
 
+    public function save_user_logs()
+    {
+        $sql = new Sql();
+
+        $results = $sql->select("CALL sp_users_logs_create(:iduser, :login, :ip)", array(
+            ":iduser" => $this->getiduser(),
+            ":login" => $this->getlogin(),
+            ":ip" => $_SERVER['REMOTE_ADDR'],
+        ));
+
+        die(var_dump($this->getiduser(), $this->getlogin()));
+    }
+
     public function save()
     {
 
@@ -154,9 +167,6 @@ class User extends Model
             ":despassword" => User::getPasswordHash($this->getdespassword()),
             ":inadmin" => $this->getinadmin(),
         ));
-
-        //  die(var_dump($this->getemployees_name(), $this->getemployees_function(),Perfil::Administrador, $this->getdeslogin(),$this->getdespassword(),$this->getinadmin()));
-        //  exit();
 
         // $this->setData($results[0]);
     }
@@ -187,8 +197,8 @@ class User extends Model
             ":id_employees" => $this->getid_employees(),
             ":employees_name" => utf8_decode($this->getemployees_name()),
             ":employees_function" => $this->getemployees_function(),
-            ":deslogin" => $this->getdeslogin()
-           
+            ":deslogin" => $this->getdeslogin(),
+
         ));
 
         // $this->setData($results[0]);

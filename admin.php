@@ -168,7 +168,7 @@ $app->get("/admin/Funcionario", function() {
 });
 
 $app->post("/admin/Funcionario", function() {
-    
+
 	try {
 
 		User::login($_POST["login"], $_POST["password"]);
