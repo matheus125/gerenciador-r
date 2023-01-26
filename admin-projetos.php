@@ -2,18 +2,17 @@
 
 use \Hcode\PageAdminProjetos;
 use \Hcode\Model\User;
+use \Hcode\Model\Clientes;
 use \Hcode\Model\Projetos;
 
 $app->get("/admin/Projetos/projetos", function(){
 
 	User::verifyLogin();
 
-	$projetos = Projetos::listAll();
-	
 	$page = new PageAdminProjetos();
 
 	$page->setTpl("projetos", [
-		'projetos'=>$projetos
+		'projetos'=>Projetos::listAll()
 	]);
 
 });
@@ -24,7 +23,10 @@ $app->get("/admin/Projetos/projeto/create", function(){
 
 	$page = new PageAdminProjetos();
 
-	$page->setTpl("projeto-create");
+	$page->setTpl("projeto-create", [
+		'cliente'=>Clientes::listAll(),
+		'funcionario'=>User::listAll()
+	]);
 
 });
 
@@ -32,29 +34,29 @@ $app->post("/admin/Projetos/projeto/create", function(){
 
 	User::verifyLogin();
 
-	$produtos = new Produtos();
+	$projetos = new Projetos();
 
-	$produtos->setData($_POST);
+	$projetos->setData($_POST);
 
-	$produtos->save();
+	$projetos->save();
 
-	header('Location: /admin/Projetos/projeto-create');
+	header('Location: /admin/Projetos/projetos');
 	exit;
 
 });
 
-$app->get("/admin/produtos/:id_product", function($id_product){
+$app->get("/admin/projetos/:id_product", function($id_product){
 	
 	User::verifyLogin();
 
-	$produtos = new Produtos();
+	$projetos = new Projetos();
 
-	$produtos->get((int)$id_product);
+	$projetos->get((int)$id_product);
 
 	$page = new PageAdminProjetos();
 
-	$page->setTpl("produtos-update",[
-	'produtos'=>$produtos->getValues()
+	$page->setTpl("projetos-update",[
+	'projetos'=>$projetos->getValues()
 	]);
 
 });
@@ -77,17 +79,17 @@ $app->post("/admin/produtos/:id_product", function($id_product){
 });
 
 
-$app->get("/admin/produtos/:id_product/delete", function($id_product){
+$app->get("/admin/Projetos/projetos/:id_projeto/delete", function($id_projeto){
 	
 	User::verifyLogin();
 
-	$produtos = new PageAdminProjetos();
+	$projetos = new Projetos();
 
-	$produtos->get((int)$id_product);
+	$projetos->get((int)$id_projeto);
 
-	$produtos->delete();
+	$projetos->delete();
 
-	header("Location: /admin/produtos");
+	header("Location: /admin/Projetos/projetos");
 	exit;
 
 });
