@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-         
+
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -32,45 +32,49 @@
             </div>
           </div>
           <!-- form start -->
-          <form id="quickForm" role="form" action="/admin/Projetos/projeto/create" method="post">
+          <form id="form" role="form" action="/admin/Projetos/projetos/{$projetos.id_projeto}" method="post">
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Nome do Projeto</label>
-                <input type="text" id="nome_projeto" name="nome_projeto" class="form-control">
+                <input type="text" id="nome_projeto" name="nome_projeto" value="{$projetos.nome_projeto}"
+                  class="form-control">
               </div>
 
               <div class="form-group">
                 <label for="inputClientCompany">Empresa cliente</label>
                 <select id="idclient" name="idclient" class="form-control custom-select">
-                  {loop="$cliente"}
-                  <option selected="selected" value="{$value.idclient}">{$value.company_name}</option>
-                  {/loop}
+                      <option value="{$projetos.idclient}">{$projetos.company_name}</option>           
                 </select>
               </div>
 
               <div class="form-group">
                 <label for="inputProjectLeader">Responsável do projeto</label>
-                <select id="id_employees" name="id_employees" class="form-control custom-select">
-                  {loop="$funcionario"}
-                  <option selected="selected" value="{$value.id_employees}">{$value.employees_name}</option>
-                  {/loop}
+                <select id="id_employees" name="id_employees" class="form-control custom-select">      
+                  <option value="{$projetos.id_employees}">{$projetos.employees_name}</option>
                 </select>
               </div>
 
               <div class="form-group">
                 <label for="inputDescription">Descrição do Projeto</label>
-                <textarea id="descricao_projeto" name="descricao_projeto" class="form-control" rows="4"></textarea>
+                <textarea id="descricao_projeto" name="descricao_projeto" class="form-control"
+                  rows="5">{$projetos.descricao_projeto}</textarea>
               </div>
 
               <div class="form-group">
                 <label for="inputStatus">Estado</label>
                 <select id="estado" name="estado" class="form-control custom-select">
-                  <option selected disabled>Selecione um</option>
+                  <option>{$projetos.estado}</option>
                   <option>Em espera</option>
                   <option>Cancelado</option>
                   <option>Em Andamento</option>
                   <option>Concluido</option>
                 </select>
+              </div>
+
+              <div class="form-group">
+                <label for="inputDescription"></label>
+                <input type="text" id="progresso" name="progresso" value="{$projetos.progresso}"
+                class="form-control">
               </div>
             </div>
             <!-- /.card-body -->
@@ -91,20 +95,23 @@
           <div class="card-body">
             <div class="form-group">
               <label for="inputEstimatedBudget">Orçamento estimado</label>
-              <input type="text" id="orcamento_projeto" name="orcamento_projeto" class="form-control">
+              <input type="text" id="orcamento_projeto" name="orcamento_projeto" value="{$projetos.orcamento_projeto}"
+                class="form-control">
             </div>
             <div class="form-group">
               <label for="inputEstimatedDuration">Data planejada para começo</label>
-              <input id="data_inicio_projeto" name="data_inicio_projeto" type="date" class="form-control">
+              <input id="data_inicio_projeto" name="data_inicio_projeto" type="date"
+                value="{$projetos.data_inicio_projeto}" class="form-control">
             </div>
             <div class="form-group">
               <label for="inputEstimatedDuration">Data planejada para fim</label>
-              <input id="data_fim_projeto" name="data_fim_projeto" type="date" class="form-control">
+              <input id="data_fim_projeto" name="data_fim_projeto" type="date" value="{$projetos.data_fim_projeto}"
+                class="form-control">
             </div>
           </div>
           <!-- /.card-body -->
         </div>
-        
+
         <!-- /.card -->
         <div class="card card-info">
           <div class="card-header">
@@ -187,6 +194,7 @@
         <input type="submit" value="Save Changes" class="btn btn-success float-right">
       </div>
     </div>
+    </form>
   </section>
   <!-- /.content -->
 </div>

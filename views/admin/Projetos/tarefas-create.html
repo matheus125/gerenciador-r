@@ -1,0 +1,106 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+            <li class="breadcrumb-item active">Nova Atividade</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Novo item - Tarefa do projeto</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <!-- form start -->
+          <form role="form" action="/admin/Projetos/tarefas/create" method="post">
+            <div class="card-body">
+              
+              <div class="form-group">
+                <label for="inputClientCompany">Projeto</label>
+                <select id="id_projeto" name="id_projeto" class="form-control custom-select">
+                      <option value="{$projetos.id_projeto}">{$projetos.nome_projeto}</option>           
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="inputProjectLeader">Responsável Tarefa</label>
+                <select id="id_employees" name="id_employees" class="form-control custom-select">
+                  {loop="$funcionario"}
+                  <option selected="selected" value="{$value.id_employees}">{$value.employees_name}</option>
+                  {/loop}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="inputDescription">Tarefa</label>
+                <input type="text" id="tarefa" name="tarefa" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="inputDescription">Descrição</label>
+                <textarea id="descricao" name="descricao" class="form-control" rows="4"></textarea>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Planejamento</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputEstimatedDuration">Data planejada para começo</label>
+              <input id="data_inicio_tarefa" name="data_inicio_tarefa" type="date" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputEstimatedDuration">Data planejada para fim</label>
+              <input id="data_fim_tarefa" name="data_fim_tarefa" type="date" class="form-control">
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+
+      </div>
+      </form>
+    </div>
+
+    <!-- /.form -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

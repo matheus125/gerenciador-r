@@ -37,26 +37,30 @@
         <table class="table table-striped projects">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Projeto</th>
               <th>Empresa</th>
-              <th>Responsável do projeto</th>
-              <th>Progresso do projeto</th>
-              <th style="width: 240px">&nbsp;Ações</th>    
+              <th>Responsável</th>
+              <th>Estado</th>
+              <th>Progresso</th>
+              <th style="width: 290px">&nbsp;Ações</th>    
             </tr>
           </thead>
           <tbody>
               {loop="$projetos"}
             <tr>
-              <td>{$value.id_projeto}</td>
               <td>{$value.nome_projeto}</td>
               <td>{$value.company_name}</td>
               <td>{$value.employees_name}</td>
               <td>{$value.estado}</td>
-
+              <td>{$value.progresso}</td>
               <td>
+                <a href="/admin/Projetos/tarefas/create/{$value.id_projeto}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>
+                  Tarefas</a>
                 <a href="/admin/Projetos/projetos/{$value.id_projeto}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>
                   Editar</a>
+                <a href="/admin/Projetos/projetos/projeto/detalhe/{$value.id_projeto}" class="btn btn-primary btn-xs"><i class="fa fa-times"></i>
+                  Detalhes
+                </a>
                 <a href="/admin/Projetos/projetos/{$value.id_projeto}/delete"
                   onclick="return confirm('Deseja realmente excluir este registro?')"
                   class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
